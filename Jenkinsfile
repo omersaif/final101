@@ -34,12 +34,24 @@ pipeline {
     }
 
     // Uploading Docker images into Nexus Registry
-    stage('Upload To Nexus') {
-     steps{  
+    //stage('Upload To Nexus') {
+     //steps{  
+       //  script {
+         //    docker.withRegistry( 'http://'+registry, registryCredentials ) {
+           //  dockerImage.push('latest')
+          //}
+        //}
+      //}
+    //} 
+
+    // Uploading Docker images into Nexus Registry
+    stage('Image upload to Nexus') {
+     steps{
          script {
              docker.withRegistry( 'http://'+registry, registryCredentials ) {
-             dockerImage.push('latest')
-          }
+              version = VersionNumber(versionNumberString: '1.${BUILDS_ALL_TIME}')
+             dockerImage.push(version)
+           }
         }
       }
     }
