@@ -5,7 +5,7 @@ pipeline {
     environment {
         imageName = "test102"
         registryCredentials = "nexus"
-        registry = "54.161.56.159:8085/"
+        registry = "18.206.57.186:8085/"
         dockerImage = ''
     }
     
