@@ -26,4 +26,5 @@ else
   $_SESSION['lastaccess'] = time();
 }
 echo 'done'
+echo 'done'
 ?>
