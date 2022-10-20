@@ -40,7 +40,7 @@ pipeline {
         }
       }
     }
-
+    // Mostly 
     // Uploading Docker images into Nexus Registry
     //stage('Upload To Nexus') {
      //steps{  
