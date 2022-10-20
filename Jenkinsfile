@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Code') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/omersaif/final101.git']]])                  
+                checkout([$class: 'GitSCM', branches: [[name: '*/feature']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/omersaif/final101.git']]])                  
                  }
         }
     
