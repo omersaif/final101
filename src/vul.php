@@ -7,7 +7,9 @@ if ($_SERVER['REMOTE_ADDR'] != $_SESSION['ipaddress'])
 session_unset();
 session_destroy();
 }
-
+// Does user agent match?
+// Does user agent match?
+// Does user agent match?
 // Does user agent match?
 if ($_SERVER['HTTP_USER_AGENT'] != $_SESSION['useragent'])
 {
