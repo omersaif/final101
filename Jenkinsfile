@@ -11,15 +11,16 @@ pipeline {
     
     stages {
         stage('Git Code') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/omersaif/final101.git']]])                   }
-        }
-    
-        //stages{
-          //steps{
-            //git branch: '*/*' , url: "https://github.com/omersaif/final101.git"
-          //}
+          //  steps {
+            //    checkout([$class: 'GitSCM', branches: [[name: '*/*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/omersaif/final101.git']]])                  
+              //   }
         //}
+    
+        
+          steps{
+            git branch: '*/*' , url: "https://github.com/omersaif/final101.git"
+          }
+        }
         stage('Sonarqube') {
                
              steps{
