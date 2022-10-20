@@ -86,7 +86,8 @@ pipeline {
 
         failure {
 
-             emailext body: '''
+             emailext attachLog: true,
+              body: '''
 
     Please Check the Code! THE BUILD HAS FAILED''',  
 
