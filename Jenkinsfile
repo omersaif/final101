@@ -14,7 +14,7 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/omersaif/final101.git']]])                   }
         }
-    }
+    
         //stages{
           //steps{
             //git branch: '*/*' , url: "https://github.com/omersaif/final101.git"
@@ -88,3 +88,4 @@ pipeline {
          }
       }    
     }
+}
