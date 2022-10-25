@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-app-jenkins 
+  labels:
+    app: php-app
+spec:
+  selector:
+    matchLabels:
+        app: php-app
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: php-app
+    spec:
+      containers:
+        - name: php-app
+          image: 130329173591.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
