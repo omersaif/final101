@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-app-jenkins 
+  name: php-app
   labels:
     app: php-app
 spec:
