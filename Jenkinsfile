@@ -79,6 +79,29 @@ pipeline {
                dockerImage.run("-p 80:80 --rm --name test102")
             }
          }
-      }    
+      }
+
     }
+      post {
+
+        failure {
+
+             emailext attachLog: true,
+              body: '''
+
+    Please Check the Code! THE BUILD HAS FAILED''',  
+
+    mimeType: 'text/html',
+
+    subject: "failed",
+
+    from: "omer.saifkazi@zohomail.in",
+
+    to: "imomersk@gmail.com",
+
+    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+
+         }
+
+    }  
 }
