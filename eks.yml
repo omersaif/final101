@@ -14,7 +14,7 @@ spec:
         bb: web
     spec:
       containers:
-      - name: bb-site
+      - name: my-php-app
         image: 130329173591.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo:latest
         imagePullPolicy: Never
 ---
