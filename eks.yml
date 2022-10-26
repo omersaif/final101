@@ -1,33 +1,34 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ReplicationController
 metadata:
-  name: bb-demo
-  namespace: default
+  labels:
+    name: phpapp
+  name: php-controller
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      bb: web
+  replicas: 1
   template:
     metadata:
       labels:
-        bb: web
+        name: phpapp
     spec:
       containers:
-      - name: my-php-app
-        image: 130329173591.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo:latest
-        imagePullPolicy: Never
+      - image: 130329173591.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo:latest
+        name: phpapp
+        ports: 
+        - name: phpapp
+          containerPort: 8085
 ---
+# Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
-  name: bb-entrypoint
-  namespace: default
+  labels:
+    name: phpapp
+  name: phpapp
 spec:
   type: NodePort
-  selector:
-    bb: web
   ports:
-  - port: 3000
-    targetPort: 3000
-    nodePort: 30001
+    - port: 8086
+      targetPort: 8086
+  selector:
+    name: phpapp
