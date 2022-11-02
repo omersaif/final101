@@ -5,7 +5,7 @@ pipeline {
     environment {
         imageName = "test102"
         registryCredentials = "nexus"
-        registry = "44.211.200.16:8085"
+        registry = "http://52.207.220.168:8085/"
         dockerImage = ''
     }
     
@@ -41,16 +41,16 @@ pipeline {
       }
     }
 
-    // Uploading Docker images into Nexus Registry
-    //stage('Upload To Nexus') {
-     //steps{  
-       //  script {
-         //    docker.withRegistry( 'http://'+registry, registryCredentials ) {
-           //  dockerImage.push('latest')
-          //}
-        //}
-      //}
-    //} 
+     Uploading Docker images into Nexus Registry
+    stage('Upload To Nexus') {
+     steps{  
+         script {
+             docker.withRegistry( 'http://'+registry, registryCredentials ) {
+             dockerImage.push('latest')
+          }
+        }
+      }
+    } 
 
     // Uploading Docker images into Nexus Registry
     stage('Image upload to Nexus') {
@@ -79,6 +79,29 @@ pipeline {
                dockerImage.run("-p 80:80 --rm --name test102")
             }
          }
-      }    
+      }
+
     }
+      post {
+
+        failure {
+
+             emailext attachLog: true,
+              body: '''
+
+    Please Check the Code! THE BUILD HAS FAILED''',  
+
+    mimeType: 'text/html',
+
+    subject: "failed",
+
+    from: "omer.saifkazi@zohomail.in",
+
+    to: "imomersk@gmail.com",
+
+    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+
+         }
+
+    }  
 }
