@@ -68,3 +68,4 @@ spec:
        - name: docker-sock
         hostPath:
             path: /var/run
+            echo 'hello '
